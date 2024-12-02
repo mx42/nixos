@@ -98,6 +98,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yoru = {
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "Yoru";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -122,21 +123,42 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    fish
     wget
+    unzip
   	helix
+
   	firefox
     kitty
-    rofi
+    # rofi
     wofi
     dolphin
     waybar
-    git
     skypeforlinux
-    unzip
     steam
+    discord  # here because somehow the 'allowUnfree' is not recognized in home.nix
+    pavucontrol
+    
+    docker
+    docker-compose
+    git
+  ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    fira-code
+
+    nerd-fonts.fira-code
+    nerd-fonts.hack
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fantasque-sans-mono
   ];
 
   programs.steam.enable = true;
+  programs.fish.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
