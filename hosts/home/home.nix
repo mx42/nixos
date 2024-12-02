@@ -27,6 +27,7 @@
     # pkgs.zsh
     pkgs.bottles
     pkgs.neofetch
+    pkgs.aoc-cli
     # pkgs.steam
     # pkgs.discord
 
@@ -83,12 +84,12 @@
       editor = {
         lsp = {
           enable = true;
-          display-messges = true;
+          display-messages = true;
           display-inlay-hints = true;
         };
-        "inline-diagnostics" = {
-          cursor-line = "warning";
-        };
+        # "inline-diagnostics" = {
+          # cursor-line = "warning";
+        # };
       };
     };
   };
