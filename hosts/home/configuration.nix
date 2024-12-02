@@ -138,6 +138,7 @@
     steam
     discord  # here because somehow the 'allowUnfree' is not recognized in home.nix
     pavucontrol
+    logiops
     
     docker
     docker-compose
@@ -158,6 +159,8 @@
   ];
 
   programs.steam.enable = true;
+  programs.gamemode.enable = true;
+  # programs.gamescopeSession.enable = true;
   programs.fish.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
