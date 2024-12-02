@@ -68,14 +68,30 @@
   #
   #  /etc/profiles/per-user/yoru/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR = "hx"; # EDITOR = "emacs";
-  };
+  # home.sessionVariables = {
+    # EDITOR = "hx"; # EDITOR = "emacs";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.zsh.enable = true;
-  programs.helix.enable = true;
+  # programs.zsh.enable = true;
+  programs.fish.enable = true;
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+    settings = {
+      editor = {
+        lsp = {
+          enable = true;
+          display-messges = true;
+          display-inlay-hints = true;
+        };
+        "inline-diagnostics" = {
+          cursor-line = "warning";
+        };
+      };
+    };
+  };
   # programs.steam.enable = true;
   programs.kitty = lib.mkForce {
     enable = true;
@@ -86,6 +102,7 @@
       mouse_hide_wait = "-1.0";
       background_opacity = "0.5";
       background_blur = 5;
+      font_family = "Fira Code";
     };
   };
   programs.waybar = {
@@ -96,10 +113,24 @@
     };
     style = ''
       * {
-        font-family: 'Fira Code', 'Symbols Nerd Font Mono', 'JetBrainsMono Nerd Font';
+        font-family: 'Fira Code', 'Symbols Nerd Font Mono';
+        font-size: 16px;
+        min-height: 45px;
       }
       window#waybar {
         background: transparent;
+      }
+      #workspaces, #clock, #pulseaudio, #network, #cpu, #memory, #backlight, #idle_inhibitor, #temperature, #custom-power {
+        border-radius: 10px;
+        background-color: rgba(10, 10, 10, 0.5);
+        margin-top: 1px;
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+      }
+      #workspaces button.active {
+        color: #ebebeb;
       }
     '';
     settings = [{

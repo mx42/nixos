@@ -143,6 +143,7 @@
     docker
     docker-compose
     git
+    cargo
   ];
 
   fonts.packages = with pkgs; [
