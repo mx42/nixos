@@ -15,6 +15,19 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  fileSystems."/mnt/apps" = {
+    device = "/dev/disk/by-label/Apps";
+    fsType = "ntfs-3g";
+    options = [ "rw" "uid=1000" ];
+  };
+
+  fileSystems."/mnt/photos" = {
+    device = "/dev/disk/by-label/Photos";
+    fsType = "ntfs-3g";
+    options = [ "rw" "uid=1000" ];
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -53,6 +66,7 @@
   programs.hyprland.enable = true;
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
+  # services.gnome3.gnome-keyring.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -108,7 +122,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    wget
   	helix
   	firefox
     kitty
@@ -117,7 +131,12 @@
     dolphin
     waybar
     git
+    skypeforlinux
+    unzip
+    steam
   ];
+
+  programs.steam.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
