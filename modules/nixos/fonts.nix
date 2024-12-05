@@ -16,6 +16,7 @@ in
       noto-fonts-cjk-sans
       noto-fonts-emoji
       fira-code
+      roboto
 
       nerd-fonts.fira-code
       nerd-fonts.hack
