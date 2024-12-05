@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,6 +23,12 @@
       home = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          ./modules/nixos/cli-environment.nix
+          ./modules/nixos/desktop-apps.nix
+          ./modules/nixos/dev-environment.nix
+          ./modules/nixos/fonts.nix
+          ./modules/nixos/gaming.nix
+          ./modules/nixos/window-manager.nix
           ./hosts/home/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
