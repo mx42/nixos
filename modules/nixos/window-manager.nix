@@ -19,6 +19,7 @@ in
       dolphin
       waybar
       pavucontrol
+      swaynotificationcenter
     ];
   };
 }

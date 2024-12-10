@@ -35,6 +35,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.networkmanager.enable = true;
 
+  hardware.logitech.lcd.enable = true;
+
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "fr_FR.UTF-8";
 
@@ -56,7 +58,16 @@
     variant = "altgr-intl";
   };
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
   # TODO Add Scanner configuration
+
+  hardware.logitech.lcd.devices = [
+    "c22d" "c22e"
+  ];
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -84,7 +95,7 @@
   };
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    logiops
+    g15daemon
   ];
 
   services.cli-environment.enable = true;

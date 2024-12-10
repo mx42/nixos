@@ -14,6 +14,9 @@ in
     environment.systemPackages = with pkgs; [
       kitty
       skypeforlinux
+      flameshot
+      xsane
+      sane-frontends
     ];
     programs.firefox.enable = true;
   };

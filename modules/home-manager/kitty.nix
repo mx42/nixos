@@ -12,6 +12,11 @@ in {
   config = lib.mkIf cfg.enable {
     programs.kitty = lib.mkForce {
       enable = true;
+      keybindings = {
+        "ctrl+left" = "previous_tab";
+        "ctrl+right" = "next_tab";
+        "ctrl+down" = "new_tab";
+      };
       settings = {
         confirm_os_window_close = 0;
         dynamic_background_opacity = true;
