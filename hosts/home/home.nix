@@ -19,7 +19,7 @@
   myHome.shell.enable = true;
 
   # TODO Move somewhere...
-  programs.spotify-player.enable = true;  
+  # programs.spotify-player.enable = true;  
 
   programs.home-manager.enable = true;
   home.stateVersion = "23.11";

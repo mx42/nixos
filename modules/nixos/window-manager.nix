@@ -20,6 +20,8 @@ in
       waybar
       pavucontrol
       swaynotificationcenter
+      wl-clipboard
+      hyprpaper
     ];
   };
 }
