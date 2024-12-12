@@ -41,5 +41,16 @@
         ];
       };
     };
+    homeConfigurations = {
+      "xmorel@work" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs;
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+         ./hosts/work/home.nix
+        ];
+      };
+    };
+    # homeManagerModules.default = ./modules/home-manager;
+    # nixosModules.default = ./modules/nixos;
   };
 }
