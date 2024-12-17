@@ -20,8 +20,20 @@ in
       blender
       gimp
       eog
+      mpv
+      brightnessctl
+      spotify
       # cura
     ];
-    programs.firefox.enable = true;
+    programs = {
+      firefox.enable = true;
+      thunar = {
+        enable = true;
+        plugins = with pkgs.xfce; [
+          thunar-archive-plugin
+          thunar-volman
+        ];
+      };
+    };
   };
 }

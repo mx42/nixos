@@ -31,7 +31,13 @@ in {
 # [language-server.pylsp.config.pylsp]
 # plugins.pyls_mypy.enabled = true
 # plugins.pyls_mypy.live_mode = true
-      
+
+# [[language]]
+# name = "rust"
+# language-servers = ["rust-analyzer"]
+
+# [language-server.rust-analyzer.config]
+# check.command = "clippy"
             
                   
       };

@@ -8,10 +8,16 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot = {
+    loader.grub.enable = true;
+    loader.grub.device = "/dev/sda";
+    loader.grub.useOSProber = true;
+    supportedFilesystems = [ "ntfs" ];
+    # tmp = {
+    #   useTmpfs = false;
+    #   tmpfsSize = "30%";
+    # };
+  };
 
   fileSystems."/mnt/apps" = {
     device = "/dev/disk/by-label/Apps";
@@ -32,10 +38,18 @@
   };
 
   networking.hostName = "arcueid"; # Define your hostname.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.networkmanager.enable = true;
-
-  hardware.logitech.lcd.enable = true;
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 10d";
+    };
+  };
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "fr_FR.UTF-8";
@@ -52,39 +66,47 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
+  hardware = {
+    sane.enable = true;
+    pulseaudio.enable = false;
+    graphics.enable = true;
   };
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-  # TODO Add Scanner configuration
-
-  hardware.logitech.lcd.devices = [
-    "c22d" "c22e"
-  ];
-
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+
+  services = {
+    xserver.enable = true;
+    xserver.xkb = {
+      layout = "us";
+      variant = "altgr-intl";
+    };
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    # my modules
+    cli-environment.enable = true;
+    desktop-apps.enable = true;
+    dev-environment.enable = true;
+    gaming.enable = true;
+    fonts.enable = true;
+    window-manager.enable = true;
   };
 
   users.users.yoru = {
     shell = pkgs.fish;
     isNormalUser = true;
     description = "Yoru";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp"];
     packages = with pkgs; [
-    
+      
     ];
   };
   home-manager = {
@@ -94,16 +116,36 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    g15daemon
-  ];
 
-  services.cli-environment.enable = true;
-  services.desktop-apps.enable = true;
-  services.dev-environment.enable = true;
-  services.gaming.enable = true;
-  services.fonts.enable = true;
-  services.window-manager.enable = true;
+  stylix = {
+    enable = true;
+    image = ../../wall.jpg;
+    polarity = "dark";
+    opacity.terminal = 0.9;
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
+    cursor.size = 24;
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.montserrat;
+        name = "Montserrat";
+      };
+      serif = {
+        package = pkgs.montserrat;
+        name = "Montserrat";
+      };
+      sizes = {
+        applications = 12;
+        terminal = 12;
+        desktop = 11;
+        popups = 12;
+      };
+    };
+  };
 
   system.stateVersion = "24.05";
 }

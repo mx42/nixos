@@ -12,10 +12,22 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      vim
       wget
+      killall
+      htop
       unzip
+      unrar
       helix
+      direnv
       git
+      bat
+      tree
+      imv
+      eza  # ?
+      appimage-run
+      nh
+      openssl
     ];
     programs.fish.enable = true;
   };

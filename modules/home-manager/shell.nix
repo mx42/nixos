@@ -15,8 +15,18 @@
       neofetch
       typst
     ];
+    programs.direnv = {
+      enable = true;
+    };
     programs.fish = {
       enable = true;
+      shellAliases = {
+        ls = "eza --icons";
+        cat = "bat";
+        ll = "eza -lh --icons --grid --group-directories-first";
+        la = "eza -lah --icons --grid --group-directories-first";
+        ".." = "cd ..";
+      };
     };
   };
 }

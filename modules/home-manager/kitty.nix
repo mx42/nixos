@@ -26,6 +26,12 @@ in {
         background_blur = 5;
         font_family = "Fira Code";
       };
+      extraConfig = ''
+        tab_bar_style fade
+        tab_fade 1
+        active_tab_font_style bold
+        inactive_tab_font_style bold
+      '';
     };
   };
 }

@@ -15,13 +15,36 @@ in
     programs.hyprlock.enable = true;
     security.pam.services.hyprlock = {};
     environment.systemPackages = with pkgs; [
-      wofi
+      # wofi
       dolphin
       waybar
       pavucontrol
+      libnotify
       swaynotificationcenter
       wl-clipboard
       hyprpaper
+      libnotify
+      hyprpicker
+      slurp
+      grim
+      swappy
+      swww
+      file-roller
+      rofi
     ];
+
+    xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal
+      ];
+      configPackages = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal
+      ];
+    };
   };
 }
