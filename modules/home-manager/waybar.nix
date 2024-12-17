@@ -40,11 +40,18 @@ in {
             "clock"
           ];
           "hyprland/workspaces" = {
-            format = "{name}";
+            format = "{icon}";
             format-icons = {
-              default = " ";
-              active = " ";
-              urgent = " ";
+              "1" = "一";
+          		"2" = "二";
+          		"3" = "三";
+          		"4" = "四";
+          		"5" = "五";
+          		"6" = "六";
+          		"7" = "七";
+          		"8" = "八";
+          		"9" = "九";
+          		"10" = "十";
             };
             on-scroll-up = "hyprctl dispatch workspace e+1";
             on-scroll-down = "hyprctl dispatch workspace e-1";
