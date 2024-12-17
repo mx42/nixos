@@ -17,6 +17,10 @@ in
       flameshot
       xsane
       sane-frontends
+      blender
+      gimp
+      eog
+      # cura
     ];
     programs.firefox.enable = true;
   };

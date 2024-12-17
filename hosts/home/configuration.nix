@@ -28,7 +28,7 @@
   fileSystems."/mnt/ext" = {
     device = "/dev/disk/by-label/Externe";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" ];
+    options = [ "auto" "nofail" "noatime" "rw" "uid=1000" ];
   };
 
   networking.hostName = "arcueid"; # Define your hostname.
