@@ -14,9 +14,8 @@ in
     environment.systemPackages = with pkgs; [
       bottles
       steam
-      discord
+      discord      
       openttd
-      nile
     ];
     programs.steam.enable = true;
     programs.gamemode.enable = true;

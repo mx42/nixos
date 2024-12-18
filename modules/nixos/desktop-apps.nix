@@ -24,6 +24,8 @@ in
       brightnessctl
       spotify
       # cura
+      obs-studio
+      prusa-slicer
     ];
     programs = {
       firefox.enable = true;

@@ -11,6 +11,20 @@ in {
   };
 
   config = lib.mkIf config.myHome.waybar.enable {
+    services.swaync = {
+      enable = true;
+      package = pkgs.swaynotificationcenter;
+      settings = {
+        "widgets" = [
+          "dnd"
+          "mpris"
+          "volume"
+          "title"
+          "notifications"
+        ];
+      };
+    };
+  
     programs.waybar = {
       enable = true;
       package = pkgs.waybar;
@@ -32,7 +46,6 @@ in {
             "idle_inhibitor"
           ];
           modules-right = [
-            "custom/hyprbindings"
             "custom/notification"
             "custom/exit"
             "battery"
@@ -128,13 +141,7 @@ in {
           "custom/startmenu" = {
             tooltip = false;
             format = "";
-            # exec = "rofi -show drun";
-            on-click = "sleep 0.1 && rofi-launcher";
-          };
-          "custom/hyprbindings" = {
-            tooltip = false;
-            format = "󱕴";
-            on-click = "sleep 0.1 && list-hypr-bindings";
+            on-click = "sleep 0.1 && rofi -show drun -modi run,drun,filebrowser,window";
           };
           "idle_inhibitor" = {
             format = "{icon}";
@@ -145,7 +152,7 @@ in {
             tooltip = "true";
           };
           "custom/notification" = {
-            tooltip = false;
+            tooltip = true;
             format = "{icon} {}";
             format-icons = {
               notification = "<span foreground='red'><sup></sup></span>";
@@ -160,7 +167,8 @@ in {
             return-type = "json";
             exec-if = "which swaync-client";
             exec = "swaync-client -swb";
-            on-click = "sleep 0.1 && task-waybar";
+            on-click = "sleep 0.1 && ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+            on-click-right = "sleep 0.1 && ${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
             escape = true;
           };
           "battery" = {

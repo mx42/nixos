@@ -20,7 +20,6 @@ in
       waybar
       pavucontrol
       libnotify
-      swaynotificationcenter
       wl-clipboard
       hyprpaper
       libnotify
