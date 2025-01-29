@@ -18,14 +18,22 @@ in
       xsane
       sane-frontends
       blender
+      tiled
+      aseprite
       gimp
       eog
       mpv
       brightnessctl
       spotify
-      # cura
       obs-studio
       prusa-slicer
+      openscad
+
+      godot_4
+      gdtoolkit_4
+      sfxr
+      lmms
+      audacity
     ];
     programs = {
       firefox.enable = true;

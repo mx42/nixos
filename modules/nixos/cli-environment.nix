@@ -16,6 +16,7 @@ in
       wget
       killall
       htop
+      p7zip
       unzip
       unrar
       helix
