@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.services.gaming;
 in
 {
-  imports = [];
+  imports = [ ];
 
   options.services.gaming = {
     enable = mkEnableOption "enable gaming";
@@ -14,7 +19,7 @@ in
     environment.systemPackages = with pkgs; [
       bottles
       steam
-      discord      
+      discord
       openttd
     ];
     programs.steam.enable = true;

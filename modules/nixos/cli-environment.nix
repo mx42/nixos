@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.services.cli-environment;
 in
 {
-  imports = [];
+  imports = [ ];
 
   options.services.cli-environment = {
     enable = mkEnableOption "enable cli-environment";
@@ -25,10 +30,12 @@ in
       bat
       tree
       imv
-      eza  # ?
+      eza # ?
       appimage-run
       nh
       openssl
+      nixfmt-rfc-style
+      nil
     ];
     programs.fish.enable = true;
   };

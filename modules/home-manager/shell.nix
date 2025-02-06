@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     myHome.shell.enable = lib.mkEnableOption "enables shell stuff";
   };

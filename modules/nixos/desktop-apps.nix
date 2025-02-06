@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.services.desktop-apps;
 in
 {
-  imports = [];
+  imports = [ ];
 
   options.services.desktop-apps = {
     enable = mkEnableOption "enable desktop-apps";

@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.myHome.helix;
-in {
+in
+{
   options = {
     myHome.helix.enable = lib.mkEnableOption "enables helix";
   };
@@ -24,22 +26,21 @@ in {
           # cursor-line = "warning"
         };
 
-# [[language]]
-# name = "python"
-# language-servers = ["pylsp"]
+        # [[language]]
+        # name = "python"
+        # language-servers = ["pylsp"]
 
-# [language-server.pylsp.config.pylsp]
-# plugins.pyls_mypy.enabled = true
-# plugins.pyls_mypy.live_mode = true
+        # [language-server.pylsp.config.pylsp]
+        # plugins.pyls_mypy.enabled = true
+        # plugins.pyls_mypy.live_mode = true
 
-# [[language]]
-# name = "rust"
-# language-servers = ["rust-analyzer"]
+        # [[language]]
+        # name = "rust"
+        # language-servers = ["rust-analyzer"]
 
-# [language-server.rust-analyzer.config]
-# check.command = "clippy"
-            
-                  
+        # [language-server.rust-analyzer.config]
+        # check.command = "clippy"
+
       };
     };
   };

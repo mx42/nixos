@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.services.dev-environment;
 in
 {
-  imports = [];
+  imports = [ ];
 
   options.services.dev-environment = {
     enable = mkEnableOption "enable dev-environment";

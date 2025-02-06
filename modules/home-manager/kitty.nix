@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.myHome.kitty;
-in {
+in
+{
   options = {
     myHome.kitty.enable = lib.mkEnableOption "enables kitty";
   };

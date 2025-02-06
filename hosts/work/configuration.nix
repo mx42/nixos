@@ -47,12 +47,15 @@
   virtualisation.docker = {
     enable = true;
   };
-  
+
   security.rtkit.enable = true;
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     # gc = {
     #   automatic = true;
@@ -78,7 +81,11 @@
     xmorel = {
       shell = pkgs.fish;
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+      ];
       initialPassword = "toto";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBd3US4tUcbWZQgcVOtZIcbHF5mHwzJzygrQuE/pGde6"
@@ -92,7 +99,7 @@
     };
   };
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "xmorel" = import ./home.nix;
     };
@@ -128,8 +135,6 @@
     };
   };
 
-
-  
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
 }

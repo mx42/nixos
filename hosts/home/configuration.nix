@@ -1,11 +1,15 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   # Bootloader.
   boot = {
@@ -22,19 +26,31 @@
   fileSystems."/mnt/apps" = {
     device = "/dev/disk/by-label/Apps";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" ];
+    options = [
+      "rw"
+      "uid=1000"
+    ];
   };
 
   fileSystems."/mnt/photos" = {
     device = "/dev/disk/by-label/Photos";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" ];
+    options = [
+      "rw"
+      "uid=1000"
+    ];
   };
 
   fileSystems."/mnt/ext" = {
     device = "/dev/disk/by-label/Externe";
     fsType = "ntfs-3g";
-    options = [ "auto" "nofail" "noatime" "rw" "uid=1000" ];
+    options = [
+      "auto"
+      "nofail"
+      "noatime"
+      "rw"
+      "uid=1000"
+    ];
   };
 
   networking.hostName = "arcueid"; # Define your hostname.
@@ -42,13 +58,17 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 10d";
     };
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
   time.timeZone = "Europe/Paris";
@@ -78,13 +98,17 @@
 
   security = {
     rtkit.enable = true;
-    sudo.extraRules = [{
-      users = [ "yoru" ];
-      commands = [{
-        command = "ALL";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+    sudo.extraRules = [
+      {
+        users = [ "yoru" ];
+        commands = [
+          {
+            command = "ALL";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 
   services = {
@@ -118,9 +142,11 @@
     shell = pkgs.fish;
     isNormalUser = true;
     description = "Yoru";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp"];
-    packages = with pkgs; [
-      
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "scanner"
+      "lp"
     ];
   };
   home-manager = {

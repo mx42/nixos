@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.services.window-manager;
 in
 {
-  imports = [];
+  imports = [ ];
 
   options.services.window-manager = {
     enable = mkEnableOption "enable window-manager";
@@ -13,7 +18,7 @@ in
   config = mkIf cfg.enable {
     programs.hyprland.enable = true;
     programs.hyprlock.enable = true;
-    security.pam.services.hyprlock = {};
+    security.pam.services.hyprlock = { };
     environment.systemPackages = with pkgs; [
       # wofi
       dolphin

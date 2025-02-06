@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.services.fonts;
 in
 {
-  imports = [];
+  imports = [ ];
 
   options.services.fonts = {
     enable = mkEnableOption "enable fonts";

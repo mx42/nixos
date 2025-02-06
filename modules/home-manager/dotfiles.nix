@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     myHome.dotfiles.enable = lib.mkEnableOption "enables dotfiles";
   };
