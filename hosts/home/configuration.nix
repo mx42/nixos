@@ -71,7 +71,21 @@
     pulseaudio.enable = false;
     graphics.enable = true;
   };
-  security.rtkit.enable = true;
+
+  environment.sessionVariables = {
+    FLAKE = "/home/yoru/nixos";
+  };
+
+  security = {
+    rtkit.enable = true;
+    sudo.extraRules = [{
+      users = [ "yoru" ];
+      commands = [{
+        command = "ALL";
+        options = [ "NOPASSWD" ];
+      }];
+    }];
+  };
 
   services = {
     xserver.enable = true;

@@ -8,11 +8,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
+    disko = {
+      "url" = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    disko,
     ...
   }@inputs: let
     system = "x86_64-linux";
@@ -20,7 +25,7 @@
   in
   {
     nixosConfigurations = {
-      home = nixpkgs.lib.nixosSystem {
+      arcueid = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit system;
           inherit inputs;
@@ -37,16 +42,23 @@
           inputs.home-manager.nixosModules.default
         ];
       };
-      work = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+      work-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system;};
         modules = [
-          ./hosts/work/configuration.nix
+          ./modules/nixos/cli-environment.nix
+          ./modules/nixos/dev-environment.nix
+          ./modules/nixos/fonts.nix
+          ./modules/nixos/window-manager.nix
+          disko.nixosModules.disko
+          inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.default
+          ./hosts/work/configuration.nix
+          ./hosts/work/hardware-configuration.nix
         ];
       };
     };
     homeConfigurations = {
-      "xmorel@work" = inputs.home-manager.lib.homeManagerConfiguration {
+      "xmorel@work-laptop" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;
         extraSpecialArgs = {inherit inputs;};
         modules = [

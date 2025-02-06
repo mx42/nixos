@@ -12,11 +12,14 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      docker
-      docker-compose
+      # docker
+      # docker-compose
       git
-      cargo
-      rustup
+      gh
+      jujutsu
+      jjui
+      # cargo
+      # rustup
     ];
   };
 }
