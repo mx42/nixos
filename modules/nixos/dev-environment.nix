@@ -17,7 +17,7 @@ in
       git
       gh
       jujutsu
-      jjui
+      lazyjj # jjui
       # cargo
       # rustup
     ];
