@@ -18,6 +18,8 @@ in
       gh
       jujutsu
       lazyjj # jjui
+      commitizen
+      pre-commit
       # cargo
       # rustup
     ];
