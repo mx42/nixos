@@ -113,7 +113,7 @@
   };
 
   services = {
-    pulseaudio.enable = true;
+    pulseaudio.enable = false;
     xserver.enable = true;
     xserver.xkb = {
       layout = "us";
