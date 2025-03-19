@@ -21,7 +21,7 @@ in
     security.pam.services.hyprlock = { };
     environment.systemPackages = with pkgs; [
       # wofi
-      dolphin
+      kdePackages.dolphin
       waybar
       pavucontrol
       libnotify

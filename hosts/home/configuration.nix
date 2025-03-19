@@ -88,8 +88,9 @@
 
   hardware = {
     sane.enable = true;
-    pulseaudio.enable = false;
     graphics.enable = true;
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
   };
 
   environment.sessionVariables = {
@@ -112,11 +113,13 @@
   };
 
   services = {
+    pulseaudio.enable = true;
     xserver.enable = true;
     xserver.xkb = {
       layout = "us";
       variant = "altgr-intl";
     };
+    blueman.enable = true;
     printing.enable = true;
     avahi = {
       enable = true;
@@ -147,6 +150,7 @@
       "wheel"
       "scanner"
       "lp"
+      "docker"
     ];
   };
   home-manager = {
@@ -185,6 +189,12 @@
         popups = 12;
       };
     };
+  };
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+    dockerCompat = true;
+    dockerSocket.enable = true;
   };
 
   system.stateVersion = "24.05";
