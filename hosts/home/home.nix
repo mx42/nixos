@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  nixpkgs,
   outputs,
   ...
 }:
@@ -60,11 +61,6 @@
       gtk-application-prefer-dark-theme = 1;
     };
   };
-  # qt = {
-    # enable = true;
-    # style.name = "adwaita-dark";
-    # platformTheme.name = "gtk3";
-  # };
 
   services = {
     hypridle = {
@@ -90,6 +86,7 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
   programs = {
     gh.enable = true;
     btop = {

@@ -30,12 +30,17 @@ in
       bat
       tree
       imv
-      eza # ?
+      eza
+      fzf
       appimage-run
       nh
       openssl
       nixfmt-rfc-style
       nil
+      ripgrep
+      coreutils
+      fd
+      clang
     ];
     programs.fish.enable = true;
   };

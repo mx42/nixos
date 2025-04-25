@@ -25,8 +25,23 @@ in
       lazyjj # jjui
       commitizen
       pre-commit
+      devenv
       # cargo
       # rustup
+      python312
+      lua
+      lua52Packages.luarocks
+      ghostscript
+      tectonic
+      mermaid-cli
+      lazygit
     ];
+    programs = {
+      neovim = {
+        enable = true;
+        vimAlias = true;
+        viAlias = true;
+      };
+    };
   };
 }

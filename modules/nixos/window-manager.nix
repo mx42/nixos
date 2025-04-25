@@ -16,6 +16,21 @@ in
   };
 
   config = mkIf cfg.enable {
+    # services.displayManager.defaultSession = "none+i3";
+    services.xserver = {
+      enable = true;
+      windowManager.i3 = {
+        enable = true;
+        extraPackages = with pkgs; [
+          # dmenu
+          i3lock
+          i3status
+        ];
+      };
+    };
+    services.picom.enable = true;
+    programs.dconf.enable = true;
+
     programs.hyprland.enable = true;
     programs.hyprlock.enable = true;
     security.pam.services.hyprlock = { };
@@ -25,6 +40,7 @@ in
       waybar
       pavucontrol
       libnotify
+      xclip
       wl-clipboard
       hyprpaper
       libnotify

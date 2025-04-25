@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  nixpkgs,
   ...
 }:
 
@@ -62,6 +63,7 @@
         "nix-command"
         "flakes"
       ];
+      trusted-users = [ "root" "yoru" ];
     };
     gc = {
       automatic = true;
@@ -69,6 +71,11 @@
       options = "--delete-older-than 10d";
     };
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    extraOptions = ''
+      extra-substituters = https://devenv.cachix.org
+      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    '';
+    
   };
 
   time.timeZone = "Europe/Paris";
@@ -93,8 +100,14 @@
     bluetooth.powerOnBoot = true;
   };
 
-  environment.sessionVariables = {
-    FLAKE = "/home/yoru/nixos";
+  environment = {
+    sessionVariables = {
+      FLAKE = "/home/yoru/nixos";
+      DIRENV_LOG_FORMAT = "";
+    };
+    systemPackages = with pkgs; [
+      logitech-udev-rules
+    ];
   };
 
   security = {
