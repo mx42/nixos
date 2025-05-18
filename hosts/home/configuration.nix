@@ -63,7 +63,10 @@
         "nix-command"
         "flakes"
       ];
-      trusted-users = [ "root" "yoru" ];
+      trusted-users = [
+        "root"
+        "yoru"
+      ];
     };
     gc = {
       automatic = true;
@@ -75,7 +78,11 @@
       extra-substituters = https://devenv.cachix.org
       extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
     '';
-    
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
   };
 
   time.timeZone = "Europe/Paris";
@@ -145,6 +152,15 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    firefly-iii-data-importer = {
+      enable = true;
+      enableNginx = true;
+      settings = {
+        FIREFLY_III_URL_FILE = "/home/yoru/.firefly-url.txt";
+        VANITY_URL_FILE = "/home/yoru/.firefly-vanity-url.txt";
+        FIREFLY_III_CLIENT_ID = 2;
+      };
+    };
     # my modules
     cli-environment.enable = true;
     desktop-apps.enable = true;
@@ -164,6 +180,7 @@
       "scanner"
       "lp"
       "docker"
+      "cdrom"
     ];
   };
   home-manager = {
@@ -172,7 +189,6 @@
       "yoru" = import ./home.nix;
     };
   };
-  nixpkgs.config.allowUnfree = true;
 
   stylix = {
     enable = true;

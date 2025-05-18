@@ -33,12 +33,17 @@ in
       obs-studio
       prusa-slicer
       openscad
+      ungoogled-chromium
+      inkscape
 
+      rawtherapee
       godot_4
       gdtoolkit_4
       sfxr
       lmms
       audacity
+      handbrake
+      vlc
     ];
     programs = {
       firefox.enable = true;
