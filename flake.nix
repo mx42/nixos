@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +20,9 @@
     {
       self,
       nixpkgs,
+      determinate,
       disko,
+      flake-utils,
       ...
     }@inputs:
     let
@@ -32,7 +36,6 @@
       nixosConfigurations = {
         arcueid = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system;
             inherit inputs;
           };
           modules = [
@@ -68,6 +71,13 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./hosts/work/home.nix
+          ];
+        };
+        "xmorel@MacLaptop.local" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/mac-laptop/home.nix
           ];
         };
       };
