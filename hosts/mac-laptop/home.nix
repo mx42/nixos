@@ -11,10 +11,6 @@
       FLAKE = "/Users/xmorel/workspace/nixos/";
     };
     packages = with pkgs; [
-      eza 
-      bat
-      ripgrep
-      fzf
       tree
     ];
     shell.enableFishIntegration = true;
@@ -26,27 +22,42 @@
   };
 
   programs = {
+    bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [ batdiff batman batwatch ];
+    };
     btop = {
       enable = true;
       settings.vim_keys = true;
     };
-    nh = {
-      enable = true;
-    };
-    gh.enable = true;
-    home-manager.enable = true;
     direnv.enable = true;
-    nix-your-shell.enable = true;
-    starship.enable = true;
+    eza = {
+      enable = true;
+      extraOptions = ["--group-directories-first"];
+      git = true;
+      icons = "auto";
+    };
     fish = {
       enable = true;
       shellAliases = {
-        ls = "eza --icons";
+        ls = "eza";
         cat = "bat";
-        ll = "eza -lh --icons --group-directories-first";
-        l = "eza -lh --icons --group-directories-first";
-        la = "eza -lah --icons --group-directories-first";
+        ll = "eza -lh";
+        l = "eza -lh";
+        la = "eza -lah";
+        man = "batman";
       };
+    };
+    fzf.enable = true;
+    gh.enable = true;
+    home-manager.enable = true;
+    jujutsu.enable = true;
+    nh.enable = true;
+    nix-your-shell.enable = true;
+    ripgrep.enable = true;
+    starship.enable = true;
+    yazi = {
+      enable = true;
     };
   };
 
