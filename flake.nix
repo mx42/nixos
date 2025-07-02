@@ -64,6 +64,12 @@
             ./hosts/work/hardware-configuration.nix
           ];
         };
+        iso-installer = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+          modules = [
+            ./hosts/iso/configuration.nix
+          ];
+        };
       };
       homeConfigurations = {
         "xmorel@work-laptop" = inputs.home-manager.lib.homeManagerConfiguration {
