@@ -18,6 +18,10 @@
       tree
     ];
     shell.enableFishIntegration = true;
+    file.".config/nvim" = {
+      source = ../../dotfiles/nvim;
+      recursive = true;
+    };
   };
 
   nix = {
@@ -65,6 +69,7 @@
         la = "eza -lah";
         man = "batman";
       };
+      shellInit = "fish_vi_key_bindings --no-erase insert";
     };
     fzf.enable = true;
     gh.enable = true;
