@@ -1,91 +1,103 @@
 {
-  config,
   pkgs,
-  lib,
-  outputs,
   ...
 }:
 
 {
-  home.username = "xmorel";
-  home.homeDirectory = "/home/xmorel";
-
   imports = [
-    ../../modules/home-manager/dotfiles.nix
-    ../../modules/home-manager/helix.nix
-    ../../modules/home-manager/waybar.nix
-    ../../modules/home-manager/shell.nix
     ../../modules/home-manager/kitty.nix
   ];
-
-  myHome.dotfiles.enable = true;
-  myHome.helix.enable = true;
-  myHome.waybar.enable = true;
-  myHome.kitty.enable = true;
-  myHome.shell.enable = true;
-
-  gtk = {
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+  myHome = {
+    kitty.enable = true;
   };
-  qt = {
-    enable = true;
-    style.name = "adwaita-dark";
-    platformTheme.name = "gtk3";
-  };
-  services = {
-    hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
-          lock_cmd = "hyprlock";
-        };
-        listener = [
-          {
-            timeout = 900;
-            on-timeout = "hyprlock";
-          }
-          {
-            timeout = 1200;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-        ];
-      };
+  home = {
+    username = "xmorel";
+    homeDirectory = "/home/xmorel/";
+    sessionVariables = {
+      FLAKE = "/home/xmorel/nixos/";
     };
+    packages = with pkgs; [
+      lazyjj
+      tree
+      slack
+      xfce.thunar
+      xfce.thunar-archive-plugin
+      xfce.thunar-volman
+    ];
+    file.".config/nvim" = {
+      source = ../../dotfiles/nvim;
+      recursive = true;
+    };
+    file.".config/hypr" = {
+      source = ../../dotfiles/hypr;
+      recursive = true;
+    };
+    shell.enableFishIntegration = true;
+  };
+
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = [
+        "root" "xmorel"
+      ];
+    };
+    gc = {
+      automatic = true;
+    };
+    extraOptions = ''
+      extra-substituters = https://devenv.cachix.org
+      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    '';
   };
 
   programs = {
-    firefox.enable = true;
-    gh.enable = true;
+    awscli.enable = true;
+    bat = {
+	    enable = true;
+  	  extraPackages = with pkgs.bat-extras; [ batman ];
+    };
     btop = {
       enable = true;
-      settings = {
-        vim_keys = true;
-      };
+      settings.vim_keys = true;
     };
-    home-manager.enable = true;
-    hyprlock = {
+    direnv.enable = true;
+    eza = {
       enable = true;
-      settings = {
-        general = {
-          disable_loading_bar = true;
-          grace = 10;
-          hide_cursor = true;
-          no_fade_in = false;
-        };
-      };
+      extraOptions = ["--group-directories-first"];
+      git = true;
+      icons = "auto";
     };
+    fish = {
+      enable = true;
+      shellAliases = {
+        ls = "eza";
+        cat = "bat";
+        ll = "eza -lh";
+        l = "eza -lh";
+        la = "eza -lah";
+        man = "batman";
+      };
+      interactiveShellInit =
+        ''
+        source /usr/share/cachyos-fish-config/cachyos-config.fish
+        fish_vi_key_bindings
+        '';
+    };
+    fzf.enable = true;
+    gh.enable = true;
+    gpg.enable = true;
+    home-manager.enable = true;
+    jujutsu.enable = true;
+    lazygit.enable = true;
+    nh.enable = true;
+    nix-your-shell.enable = true;
+    password-store.enable = true;
+    ripgrep.enable = true;
+    starship.enable = true;
+    yazi.enable = true;
   };
 
   home.stateVersion = "23.11";

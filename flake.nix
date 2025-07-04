@@ -9,7 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
+    stylix = {
+       url = "github:danth/stylix";
+       inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       "url" = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +25,7 @@
       nixpkgs,
       determinate,
       disko,
+      stylix,
       flake-utils,
       ...
     }@inputs:
@@ -46,7 +50,7 @@
             ./modules/nixos/gaming.nix
             ./modules/nixos/window-manager.nix
             ./hosts/home/configuration.nix
-            inputs.stylix.nixosModules.stylix
+            stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.default
           ];
         };
@@ -58,7 +62,7 @@
             ./modules/nixos/fonts.nix
             ./modules/nixos/window-manager.nix
             disko.nixosModules.disko
-            inputs.stylix.nixosModules.stylix
+            stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.default
             ./hosts/work/configuration.nix
             ./hosts/work/hardware-configuration.nix
