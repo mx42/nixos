@@ -17,7 +17,9 @@
       FLAKE = "/home/xmorel/nixos/";
     };
     packages = with pkgs; [
+      devenv
       lazyjj
+      tailscale-systray
       tree
       slack
       xfce.thunar
@@ -94,7 +96,7 @@
     lazygit.enable = true;
     nh.enable = true;
     nix-your-shell.enable = true;
-    password-store.enable = true;
+    rbw.enable = true;
     ripgrep.enable = true;
     starship.enable = true;
     yazi.enable = true;
