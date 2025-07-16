@@ -19,12 +19,15 @@
     packages = with pkgs; [
       devenv
       lazyjj
+      slack
       tailscale-systray
       tree
-      slack
+      ungoogled-chromium
       xfce.thunar
       xfce.thunar-archive-plugin
       xfce.thunar-volman
+      yt-dlp
+      vial
     ];
     file.".config/nvim" = {
       source = ../../dotfiles/nvim;
