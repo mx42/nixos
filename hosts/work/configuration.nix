@@ -21,8 +21,8 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
-    pkgs.slack
-    pkgs.teams-for-linux
+    # pkgs.slack
+    # pkgs.teams-for-linux
     pkgs.openvpn
   ];
   networking = {

@@ -113,7 +113,7 @@
       DIRENV_LOG_FORMAT = "";
     };
     systemPackages = with pkgs; [
-      logitech-udev-rules
+      vial
     ];
   };
 
@@ -133,6 +133,16 @@
   };
 
   services = {
+    udev.packages = with pkgs; [
+      vial
+    ];
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = true;
+        AllowUsers = null;
+      };
+    };
     pulseaudio.enable = false;
     xserver.enable = true;
     xserver.xkb = {

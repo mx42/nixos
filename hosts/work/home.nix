@@ -12,14 +12,14 @@
   };
   home = {
     username = "xmorel";
-    homeDirectory = "/home/xmorel/";
+    homeDirectory = "/home/xmorel";
     sessionVariables = {
       FLAKE = "/home/xmorel/nixos/";
     };
     packages = with pkgs; [
       devenv
       lazyjj
-      slack
+      # slack
       tailscale-systray
       tree
       ungoogled-chromium
@@ -41,12 +41,16 @@
   };
 
   nix = {
-    package = pkgs.nix;
+    # package = pkgs.nix;
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       trusted-users = [
-        "root" "xmorel"
+        "root"
+        "xmorel"
       ];
     };
     gc = {
@@ -61,8 +65,8 @@
   programs = {
     awscli.enable = true;
     bat = {
-	    enable = true;
-  	  extraPackages = with pkgs.bat-extras; [ batman ];
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [ batman ];
     };
     btop = {
       enable = true;
@@ -71,7 +75,7 @@
     direnv.enable = true;
     eza = {
       enable = true;
-      extraOptions = ["--group-directories-first"];
+      extraOptions = [ "--group-directories-first" ];
       git = true;
       icons = "auto";
     };
@@ -85,11 +89,10 @@
         la = "eza -lah";
         man = "batman";
       };
-      interactiveShellInit =
-        ''
+      interactiveShellInit = ''
         source /usr/share/cachyos-fish-config/cachyos-config.fish
         fish_vi_key_bindings
-        '';
+      '';
     };
     fzf.enable = true;
     gh.enable = true;
