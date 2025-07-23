@@ -5,19 +5,17 @@
   ...
 }:
 {
-  options.myNixOS.feature.hyprland.enable = lib.mkEnableOption "enables hyprland";
+  options.myHome.services.hyprland.enable = lib.mkEnableOption "enables hyprland";
 
-  config = lib.mkIf config.myNixOS.feature.hyprland.enable {
+  config = lib.mkIf config.myHome.services.hyprland.enable {
     home.file.".config/hypr" = {
       source = ../../../dotfiles/hypr;
       recursive = true;
     };
-    programs = {
-      dconf.enable = true;
-      hyprland.enable = true;
-    };
 
-    environment.systemPackages = with pkgs; [
+    wayland.windowManager.hyprland.enable = true;
+
+    home.packages = with pkgs; [
       libnotify
       xclip
       wl-clipboard
@@ -25,18 +23,17 @@
       libnotify
       hyprpicker
       slurp
+      swappy
       grim
       rofi
     ];
 
     services = {
       picom.enable = true;
-      xserver.enable = true;
     };
 
     xdg.portal = {
       enable = true;
-      wlr.enable = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal

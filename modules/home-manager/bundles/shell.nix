@@ -8,6 +8,7 @@
   options.myHome.bundle.shell.enable = lib.mkEnableOption "enable shell bundle";
 
   config = lib.mkIf config.myHome.bundle.shell.enable {
+    myHome.programs.nvim.enable = true;
     home.packages = with pkgs; [
       commitizen
       pre-commit

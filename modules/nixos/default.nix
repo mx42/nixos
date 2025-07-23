@@ -18,6 +18,15 @@
   ];
 
   config = {
+    programs.dconf.enable = true;
+    programs.hyprland.enable = true;
+    services.xserver = {
+      displayManager = {
+        defaultSession = "hyprland";
+      };
+    };
+    xdg.portal.enable = true;
+
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"

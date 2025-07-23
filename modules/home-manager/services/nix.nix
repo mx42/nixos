@@ -12,7 +12,7 @@
       FLAKE = "${config.home.homeDirectory}/nixos/";
       NH_FLAKE = "${config.home.homeDirectory}/nixos/";
     };
-    systemPackages = map lib.lowPrio [
+    home.packages = map lib.lowPrio [
       pkgs.nh
       pkgs.nil
       pkgs.nixfmt-rfc-style
