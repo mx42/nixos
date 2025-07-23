@@ -3,15 +3,10 @@
   config,
   ...
 }:
-let
-  cfg = config.myHome.kitty;
-in
 {
-  options = {
-    myHome.kitty.enable = lib.mkEnableOption "enables kitty";
-  };
+  options.myHome.programs.kitty.enable = lib.mkEnableOption "enables kitty";
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.myHome.programs.kitty.enable {
     programs.kitty = lib.mkForce {
       enable = true;
       keybindings = {

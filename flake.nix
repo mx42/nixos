@@ -20,78 +20,17 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      determinate,
-      disko,
-      stylix,
-      flake-utils,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        system = system;
-        config.allowUnfree = true;
-      };
-    in
-    {
+    inputs: with (import ./myLib inputs); {
       nixosConfigurations = {
-        arcueid = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./modules/nixos/cli-environment.nix
-            ./modules/nixos/desktop-apps.nix
-            ./modules/nixos/dev-environment.nix
-            ./modules/nixos/fonts.nix
-            ./modules/nixos/gaming.nix
-            ./modules/nixos/window-manager.nix
-            ./hosts/home/configuration.nix
-            stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.default
-          ];
-        };
-        work-laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./modules/nixos/cli-environment.nix
-            ./modules/nixos/dev-environment.nix
-            ./modules/nixos/fonts.nix
-            ./modules/nixos/window-manager.nix
-            disko.nixosModules.disko
-            stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.default
-            ./hosts/work/configuration.nix
-            ./hosts/work/hardware-configuration.nix
-          ];
-        };
-        iso-installer = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/iso/configuration.nix
-          ];
-        };
+        arcueid = mkSystem ./hosts/home/configuration.nix;
+        work-laptop = mkSystem ./hosts/work/configuration.nix;
       };
       homeConfigurations = {
-        "xmorel@work-laptop" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/work/home.nix
-          ];
-        };
-        "xmorel@MacLaptop.local" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/mac-laptop/home.nix
-          ];
-        };
+        "yoru@arcueid" = mkHome "x86_64-linux" ./hosts/home/home.nix;
+        "xmorel@work-laptop" = mkHome "x86_64-linux" ./hosts/work/home.nix;
+        "xmorel@MacLaptop.local" = mkHome "aarch64-darwin" ./hosts/mac-laptop/home.nix;
       };
-      # homeManagerModules.default = ./modules/home-manager;
-      # nixosModules.default = ./modules/nixos;
+      homeManagerModules.default = import ./modules/home-manager;
+      nixosModules.default = import ./modules/nixos;
     };
 }

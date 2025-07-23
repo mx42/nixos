@@ -8,11 +8,9 @@ let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
 in
 {
-  options = {
-    myHome.waybar.enable = lib.mkEnableOption "enables waybar";
-  };
+  options.myHome.services.waybar.enable = lib.mkEnableOption "enables waybar";
 
-  config = lib.mkIf config.myHome.waybar.enable {
+  config = lib.mkIf config.myHome.services.waybar.enable {
     services.swaync = {
       enable = true;
       package = pkgs.swaynotificationcenter;
@@ -30,10 +28,6 @@ in
     programs.waybar = {
       enable = true;
       package = pkgs.waybar;
-      # systemd = {
-      #   enable = false;
-      #   target = "graphical-session.target";
-      # };
       settings = [
         {
           layer = "top";
