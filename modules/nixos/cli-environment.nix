@@ -17,28 +17,10 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      vim
-      wget
-      killall
-      htop
-      p7zip
-      unzip
-      unrar
-      helix
-      direnv
-      git
-      bat
-      tree
-      imv
-      eza
-      fzf
-      appimage-run
-      nh
       openssl
       nixfmt-rfc-style
       nil
       ripgrep
-      coreutils
       fd
       clang
     ];

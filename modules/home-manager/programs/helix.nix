@@ -3,15 +3,9 @@
   config,
   ...
 }:
-let
-  cfg = config.myHome.helix;
-in
 {
-  options = {
-    myHome.helix.enable = lib.mkEnableOption "enables helix";
-  };
-
-  config = lib.mkIf cfg.enable {
+  options.myHome.programs.helix.enable = lib.mkEnableOption "enables helix";
+  config = lib.mkIf config.myHome.programs.helix.enable {
     programs.helix = {
       enable = true;
       defaultEditor = true;
