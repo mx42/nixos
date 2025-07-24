@@ -5,8 +5,8 @@
   ...
 }:
 {
-  options.myNixOS.features.stylix.enable = lib.mkEnableOption "enable Stylix";
-  config = lib.mkIf config.myNixOS.features.stylix.enable {
+  options.myNixOS.feature.stylix.enable = lib.mkEnableOption "enable Stylix";
+  config = lib.mkIf config.myNixOS.feature.stylix.enable {
     stylix = {
       enable = true;
       image = ../../../wall.jpg;

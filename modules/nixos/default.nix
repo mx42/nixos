@@ -11,10 +11,6 @@
     ./archetypes
     ./features
     ./home-manager.nix
-
-    # ./desktop-apps.nix
-    # ./fonts.nix
-    # ./gaming.nix
   ];
 
   config = {

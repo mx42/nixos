@@ -4,23 +4,14 @@
   config,
   ...
 }:
-with lib;
-let
-  cfg = config.services.gaming;
-in
 {
-  imports = [ ];
+  options.myNixOS.feature.gaming.enable = lib.mkEnableOption "enable gaming";
 
-  options.services.gaming = {
-    enable = mkEnableOption "enable gaming";
-  };
-
-  config = mkIf cfg.enable {
+  config = lib.mkIf config.myNixOS.feature.gaming.enable {
     environment.systemPackages = with pkgs; [
       bottles
       steam
       discord
-      openttd
     ];
     programs.steam.enable = true;
     programs.gamemode.enable = true;

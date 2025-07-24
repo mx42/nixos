@@ -8,7 +8,7 @@
 {
   options.myNixOS.archetype.general.enable = lib.mkEnableOption "enable general archetype";
   config = lib.mkIf config.myNixOS.archetype.general.enable {
-    myNixOS.features.stylix.enable = true;
+    myNixOS.feature.stylix.enable = true;
 
     environment.systemPackages = [
       pkgs.openssl

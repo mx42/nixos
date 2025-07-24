@@ -1,10 +1,6 @@
 {
   inputs,
-  outputs,
-  myLib,
   modulesPath,
-  lib,
-  pkgs,
   ...
 }:
 {
@@ -22,6 +18,8 @@
       };
     };
     archetype.general.enable = true;
+    feature.fonts.enable = true;
+    feature.virtualisation.enable = true;
   };
 
   boot = {
@@ -57,7 +55,6 @@
   services.auto-cpufreq.enable = true;
   security.sudo.wheelNeedsPassword = false;
   services.xserver.videoDrivers = [ "amdgpu" ];
-  virtualisation.docker.enable = true; # feature virtualisation
 
   system.stateVersion = "24.05";
 }

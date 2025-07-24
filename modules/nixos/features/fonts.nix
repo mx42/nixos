@@ -4,18 +4,10 @@
   config,
   ...
 }:
-with lib;
-let
-  cfg = config.services.fonts;
-in
 {
-  imports = [ ];
+  options.myNixOS.feature.fonts.enable = lib.mkEnableOption "enable fonts";
 
-  options.services.fonts = {
-    enable = mkEnableOption "enable fonts";
-  };
-
-  config = mkIf cfg.enable {
+  config = lib.mkIf config.myNixOS.feature.fonts.enable {
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
