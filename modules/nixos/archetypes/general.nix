@@ -18,6 +18,7 @@
       graphics.enable = true;
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
+      sane.enable = true;
     };
 
     i18n = {
