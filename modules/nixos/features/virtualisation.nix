@@ -12,7 +12,7 @@
       enable = true;
       autoPrune.enable = true;
       dockerCompat = true;
-      dockerSocker.enable = true;
+      dockerSocket.enable = true;
     };
   };
 }
