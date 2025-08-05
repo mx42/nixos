@@ -56,5 +56,7 @@
   security.sudo.wheelNeedsPassword = false;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  services.tailscale.enable = true;
+
   system.stateVersion = "24.05";
 }

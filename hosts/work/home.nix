@@ -8,6 +8,7 @@
     bundle.myhypr.enable = true;
     bundle.desktop-apps.enable = true;
     bundle.shell.enable = true;
+    programs.creativity.drawing.enable = true;
   };
 
   home = {

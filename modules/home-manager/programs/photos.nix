@@ -9,7 +9,10 @@
   config = lib.mkIf config.myHome.programs.photos.enable {
     home.packages = with pkgs; [
       # gimp
-      rawtherapee
+      gphoto2
+      # rawtherapee
+      darktable
+      exiftool
     ];
   };
 }

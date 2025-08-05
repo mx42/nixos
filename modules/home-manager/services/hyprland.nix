@@ -25,11 +25,17 @@
       slurp
       swappy
       grim
-      rofi
     ];
+    programs = {
+      rofi.enable = true;
+      swaylock.enable = true;
+    };
 
     services = {
       picom.enable = true;
+      hyprsunset.enable = true;
+      mako.enable = true;
+      swayidle.enable = true;
     };
 
     xdg.portal = {
