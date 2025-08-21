@@ -57,6 +57,7 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
 
   system.stateVersion = "24.05";
 }

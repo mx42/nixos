@@ -16,10 +16,11 @@
   config = {
     programs.dconf.enable = true;
     programs.hyprland.enable = true;
-    services.xserver = {
-      displayManager = {
-        defaultSession = "hyprland";
-      };
+    services.displayManager.defaultSession = "hyprland";
+    services.chrony = {
+      enable = true;
+      enableNTS = true;
+      servers = [ "time.cloudflare.com" ];
     };
     xdg.portal.enable = true;
 
