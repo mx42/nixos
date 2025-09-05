@@ -44,12 +44,14 @@
         openFirewall = true;
       };
       blueman.enable = true;
+      gnome.gnome-keyring.enable = true;
       openssh.enable = true;
       pipewire = {
         enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
+        wireplumber.enable = true;
       };
       printing.enable = true;
       udev.packages = with pkgs; [

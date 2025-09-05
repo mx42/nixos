@@ -13,6 +13,7 @@ in
   config = lib.mkIf config.myHome.services.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      xwayland.enable = true;
       settings = {
         # hyprland.conf
         "$mainMod" = "SUPER";
@@ -201,7 +202,6 @@ in
       rofi.enable = true;
       swaylock.enable = true;
     };
-
     services = {
       picom.enable = true;
       hyprsunset.enable = true;

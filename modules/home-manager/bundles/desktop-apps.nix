@@ -11,6 +11,9 @@
     myHome.programs.scanner.enable = true;
     myHome.programs.photos.enable = true;
     home.packages = map lib.lowPrio [
+      pkgs.bitwarden-cli
+      pkgs.bws # bitwarden
+      pkgs.jq
       pkgs.bottles
       pkgs.brightnessctl
       pkgs.flameshot
