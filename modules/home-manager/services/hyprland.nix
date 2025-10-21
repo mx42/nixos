@@ -35,6 +35,9 @@ in
           "mako &"
           "nm-applet --indicator &"
           "$idlehandler"
+          "dbus-update-activation-environment --systemd --all" # WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+          "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
         ];
 
         # decorations.conf
@@ -65,7 +68,7 @@ in
           "XCURSOR_SIZE,24"
           "QT_CURSOR_SIZE,24"
           "XDG_CURRENT_DESKTOP, Hyprland"
-          "XDG_SESSION_TYPE, Hyprland"
+          "XDG_SESSION_TYPE, wayland" # Hyprland?
           "XDG_SESSION_DESKTOP, Hyprland"
           "GDK_BACKEND, wayland, x11"
           "CLUTTER_BACKEND, wayland"

@@ -1,6 +1,7 @@
 {
   inputs,
   modulesPath,
+  pkgs,
   ...
 }:
 {
@@ -39,7 +40,10 @@
     initrd.kernelModules = [ "amdgpu" ];
     plymouth.enable = true;
   };
-
+  programs.obs-studio = {
+    enable = true;
+    plugins = [ pkgs.obs-studio-plugins.wlrobs ];
+  };
   hardware = {
     sane.enable = true;
   };
