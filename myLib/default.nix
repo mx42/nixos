@@ -14,6 +14,12 @@ rec {
       modules = [
         config
         outputs.nixosModules.default
+        inputs.agenix.nixosModules.default
+        {
+          environment.systemPackages = [
+            inputs.agenix.packages.x86_64-linux.default # hmm arch?
+          ];
+        }
       ];
     };
 

@@ -44,8 +44,11 @@
     enable = true;
     plugins = [ pkgs.obs-studio-plugins.wlrobs ];
   };
+  programs.niri.enable = true; # test...
   hardware = {
     sane.enable = true;
+    amdgpu.amdvlk.enable = true;
+    amdgpu.amdvlk.support32Bit.enable = true;
   };
   networking.hostName = "work-laptop";
   nix.settings.trusted-users = [
