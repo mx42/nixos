@@ -59,6 +59,8 @@ in
           "wheel"
           "docker"
           "lp"
+          "wireshark"
+          "dialout" # serial port access
         ];
       }
       // user.userNixosSettings

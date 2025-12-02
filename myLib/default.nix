@@ -15,6 +15,12 @@ rec {
         config
         outputs.nixosModules.default
         inputs.agenix.nixosModules.default
+        inputs.noctalia.nixosModules.default
+        {
+          environment.systemPackages = [
+            inputs.noctalia.packages.x86_64-linux.default
+          ];
+        }
         {
           environment.systemPackages = [
             inputs.agenix.packages.x86_64-linux.default # hmm arch?
@@ -29,6 +35,7 @@ rec {
       pkgs = pkgsFor sys;
       extraSpecialArgs = { inherit inputs outputs myLib; };
       modules = [
+        inputs.noctalia.homeModules.default
         inputs.stylix.homeManagerModules.stylix
         config
         outputs.homeManagerModules.default

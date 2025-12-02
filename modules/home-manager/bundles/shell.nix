@@ -29,7 +29,7 @@
       yt-dlp
     ];
     programs = {
-      awscli.enable = true;
+      # awscli.enable = true;
       bat = {
         enable = true;
         extraPackages = [ pkgs.bat-extras.batman ];

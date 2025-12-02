@@ -1,11 +1,16 @@
 {
+  inputs,
+  pkgs,
   ...
 }:
 {
+  imports = [
+    inputs.noctalia.homeModules.default
+  ];
   myHome = {
     services.nix.enable = true;
     bundle.work-apps.enable = true;
-    bundle.myhypr.enable = true;
+    bundle.myhypr.enable = false;
     bundle.desktop-apps.enable = true;
     bundle.shell.enable = true;
     programs.creativity = {
@@ -23,8 +28,28 @@
     stateVersion = "23.11";
   };
   programs.git = {
-    userName = "Xavier Morel";
-    userEmail = "morelx42@gmail.com";
+    settings.user = {
+      name = "Xavier Morel";
+      email = "morelx42@gmail.com";
+    };
   };
   programs.home-manager.enable = true;
+  programs = {
+    rofi.enable = true;
+    noctalia-shell.enable = true;
+    quickshell.enable = true;
+    alacritty.enable = true;
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal
+    ];
+  };
 }

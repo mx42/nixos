@@ -7,23 +7,23 @@
 let
   drawing-apps = with pkgs; [
     gimp
-    tiled
-    aseprite
-    inkscape
+    # tiled
+    # aseprite
+    # inkscape
     sweethome3d.application
   ];
   printing-apps = with pkgs; [
     blender
-    prusa-slicer
-    openscad
+    # prusa-slicer
+    # openscad
   ];
   gamedev-apps = with pkgs; [
-    godot_4
-    gdtoolkit_4
+    # godot_4
+    # gdtoolkit_4
   ];
   sound-apps = with pkgs; [
     audacity
-    sfxr
+    # sfxr
   ];
 in
 {

@@ -12,6 +12,7 @@
     environment.systemPackages = [
       pkgs.openssl
       pkgs.coreutils
+      pkgs.vulkan-tools
     ];
     hardware = {
       graphics.enable = true;
@@ -57,7 +58,14 @@
       udev.packages = with pkgs; [
         vial
       ];
-      xserver.enable = true;
+      xserver = {
+        enable = true;
+        videoDrivers = [
+          "modesetting"
+          "fbdev"
+          "amdgpu"
+        ];
+      };
     };
 
     time.timeZone = "Europe/Paris";

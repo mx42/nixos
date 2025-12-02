@@ -28,6 +28,7 @@
       efiSupport = true;
       efiInstallAsRemovable = true;
     };
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [
       "coretemp"
       "cpuid"
@@ -44,11 +45,13 @@
     enable = true;
     plugins = [ pkgs.obs-studio-plugins.wlrobs ];
   };
-  programs.niri.enable = true; # test...
+  programs = {
+    niri.enable = true; # test...
+    # xwayland.enable = true;
+  };
   hardware = {
     sane.enable = true;
-    amdgpu.amdvlk.enable = true;
-    amdgpu.amdvlk.support32Bit.enable = true;
+    graphics.enable = true;
   };
   networking.hostName = "work-laptop";
   nix.settings.trusted-users = [
@@ -59,12 +62,21 @@
     enable = true;
     cpuFreqGovernor = "schedutil";
   };
-  services.auto-cpufreq.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "client";
+  services = {
+    # auto-cpufreq.enable = true;
+    xserver.videoDrivers = [ "amdgpu" ];
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+    tailscale.enable = true;
+    tailscale.useRoutingFeatures = "client";
+  };
+  environment.systemPackages = [
+    pkgs.pavucontrol
+    pkgs.swaylock
+    pkgs.xwayland-satellite
+  ];
+  programs.wireshark.enable = true;
 
   system.stateVersion = "24.05";
 }
